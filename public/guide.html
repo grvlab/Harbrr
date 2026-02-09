@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harbrr - User Guide</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background: #0b1120;
+      color: #e2e8f0;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      border-bottom: 1px solid #1e3a5f;
+      padding: 60px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.08) 0%, transparent 70%);
+    }
+
+    .header-content { position: relative; z-index: 1; }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .logo svg { width: 42px; height: 42px; color: #3b82f6; }
+
+    .logo-text {
+      font-size: 38px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #64748b;
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+
+    .version {
+      display: inline-block;
+      background: rgba(59,130,246,0.12);
+      color: #60a5fa;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* Nav */
+    .nav {
+      background: #0f172a;
+      border-bottom: 1px solid #1e293b;
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .nav a {
+      color: #64748b;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+
+    .nav a:hover {
+      background: rgba(59,130,246,0.1);
+      color: #60a5fa;
+    }
+
+    /* Content */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* Sections */
+    section { margin-bottom: 56px; }
+
+    section:last-of-type { margin-bottom: 0; }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1e293b;
+      letter-spacing: -0.3px;
+    }
+
+    h2 .section-num {
+      color: #3b82f6;
+      margin-right: 10px;
+      font-weight: 600;
+    }
+
+    h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin: 28px 0 12px;
+    }
+
+    p {
+      color: #94a3b8;
+      margin-bottom: 14px;
+      font-size: 15px;
+    }
+
+    /* Code */
+    code {
+      background: #1e293b;
+      color: #22d3ee;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-family: 'Cascadia Code', 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 13px;
+    }
+
+    /* Tip boxes */
+    .tip {
+      background: rgba(59,130,246,0.06);
+      border-left: 3px solid #3b82f6;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 18px 0;
+    }
+
+    .tip p { margin-bottom: 0; color: #94a3b8; font-size: 14px; }
+
+    .tip strong { color: #60a5fa; }
+
+    /* Warning box */
+    .warn {
+      background: rgba(245,158,11,0.06);
+      border-left: 3px solid #f59e0b;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 18px 0;
+    }
+
+    .warn p { margin-bottom: 0; color: #94a3b8; font-size: 14px; }
+
+    .warn strong { color: #fbbf24; }
+
+    /* Lists */
+    ul, ol {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    li {
+      color: #94a3b8;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    li strong { color: #e2e8f0; }
+
+    /* Feature cards */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .feature {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 18px;
+      transition: border-color 0.2s;
+    }
+
+    .feature:hover { border-color: #3b82f6; }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(59,130,246,0.12);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      color: #3b82f6;
+    }
+
+    .feature-icon svg { width: 18px; height: 18px; }
+
+    .feature h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 4px;
+    }
+
+    .feature p {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    /* Key shortcut badge */
+    kbd {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 12px;
+      color: #94a3b8;
+      box-shadow: 0 1px 0 #0f172a;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+
+    th {
+      text-align: left;
+      padding: 10px 14px;
+      background: #1e293b;
+      color: #64748b;
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid #334155;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #1e293b;
+      color: #94a3b8;
+    }
+
+    /* Back to top */
+    .back-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 40px;
+      height: 40px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-size: 18px;
+    }
+
+    .back-top:hover {
+      background: #3b82f6;
+      border-color: #3b82f6;
+      color: white;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid #1e293b;
+      color: #334155;
+      font-size: 12px;
+    }
+
+    .footer a { color: #3b82f6; text-decoration: none; }
+
+    @media (max-width: 640px) {
+      .features { grid-template-columns: 1fr; }
+      .logo-text { font-size: 28px; }
+      .header { padding: 40px 16px 32px; }
+      .content { padding: 32px 16px 60px; }
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-content">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="14"/>
+          <circle cx="6" cy="19" r="3"/><line x1="12" y1="14" x2="6" y2="16"/>
+          <circle cx="18" cy="19" r="3"/><line x1="12" y1="14" x2="18" y2="16"/>
+        </svg>
+        <span class="logo-text">Harbrr</span>
+      </div>
+      <div class="subtitle">User Guide</div>
+      <span class="version">v1.0.0</span>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav">
+    <div class="nav-inner">
+      <a href="#getting-started">Getting Started</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#details">Details Panel</a>
+      <a href="#port-checker">Port Checker</a>
+      <a href="#processes">Managing Processes</a>
+      <a href="#auto-refresh">Auto-Refresh</a>
+      <a href="#export">CSV Export</a>
+      <a href="#themes">Themes</a>
+      <a href="#tips">Tips & Tricks</a>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- Getting Started -->
+    <section id="getting-started">
+      <h2><span class="section-num">01</span>Getting Started</h2>
+      <p>Harbrr is a Windows desktop app that lets you monitor and manage all network connections on your system. Think of it as a visual, interactive layer on top of <code>netstat</code>.</p>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="14"/><circle cx="6" cy="19" r="3"/><line x1="12" y1="14" x2="6" y2="16"/><circle cx="18" cy="19" r="3"/><line x1="12" y1="14" x2="18" y2="16"/></svg>
+          </div>
+          <h4>Monitor Connections</h4>
+          <p>See every TCP/UDP connection with process names, ports, addresses, and states.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <h4>Kill Processes</h4>
+          <p>Terminate processes hogging ports with a single click, individually or in bulk.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h4>Check Port Availability</h4>
+          <p>Instantly check if a specific port is free or see what's using it.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <h4>Export Data</h4>
+          <p>Download your filtered connections as a CSV file for further analysis.</p>
+        </div>
+      </div>
+
+      <h3>App Layout</h3>
+      <p>The app has three main areas:</p>
+      <ul>
+        <li><strong>Title Bar</strong> &mdash; shows the app name and window controls (minimize, maximize, close, and this help button).</li>
+        <li><strong>Sidebar</strong> &mdash; navigation between Dashboard and Port Checker, theme toggle, and system info at the bottom.</li>
+        <li><strong>Main Area</strong> &mdash; the active page content (Dashboard or Port Checker).</li>
+      </ul>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboard">
+      <h2><span class="section-num">02</span>Dashboard</h2>
+      <p>The Dashboard is the main screen. It shows all active network connections on your system in a powerful, filterable table.</p>
+
+      <h3>Stats Cards</h3>
+      <p>At the top you'll see five summary cards:</p>
+      <table>
+        <tr><th>Card</th><th>Shows</th></tr>
+        <tr><td><strong>Total</strong></td><td>Total number of connections</td></tr>
+        <tr><td><strong>Listening</strong></td><td>Connections in LISTENING state (server ports)</td></tr>
+        <tr><td><strong>Established</strong></td><td>Active connections to remote hosts</td></tr>
+        <tr><td><strong>Open Ports</strong></td><td>Unique listening ports</td></tr>
+        <tr><td><strong>Processes</strong></td><td>Unique process IDs with connections</td></tr>
+      </table>
+
+      <h3>Search</h3>
+      <p>The search bar filters across all fields at once &mdash; type a port number, process name, IP address, or PID and the table updates instantly.</p>
+
+      <h3>Filters</h3>
+      <p>Use the filter buttons to narrow by:</p>
+      <ul>
+        <li><strong>Protocol</strong> &mdash; All, TCP, or UDP</li>
+        <li><strong>State</strong> &mdash; All, LISTENING, ESTABLISHED, TIME_WAIT, CLOSE_WAIT</li>
+      </ul>
+
+      <h3>Sorting</h3>
+      <p>Click any column header to sort by that column. Click again to reverse the sort direction. The current sort column shows an arrow indicator.</p>
+
+      <h3>Column Chooser</h3>
+      <p>Click the funnel icon (<code>Columns</code>) in the toolbar to show or hide columns. Your preferences are saved automatically and persist between sessions.</p>
+
+      <div class="tip">
+        <p><strong>Tip:</strong> Hide columns you don't need to reduce clutter. For example, hide "Remote Address" and "Remote Port" if you only care about listening ports.</p>
+      </div>
+
+      <h3>Row Selection</h3>
+      <p>Check the box on any row to select it. Select multiple rows and use the <code>Kill Selected</code> button in the floating action bar to terminate processes in bulk.</p>
+
+      <h3>Context Menu</h3>
+      <p>Right-click any row to access quick actions: View Details, Copy Address, Copy PID, and Kill Process.</p>
+    </section>
+
+    <!-- Details Panel -->
+    <section id="details">
+      <h2><span class="section-num">03</span>Connection Details</h2>
+      <p>Click the eye icon on any row (or double-click the row) to open the detail panel. It shows the full breakdown of a connection:</p>
+      <ul>
+        <li><strong>Process</strong> &mdash; PID and process name</li>
+        <li><strong>Protocol & State</strong></li>
+        <li><strong>Local Endpoint</strong> &mdash; address and port</li>
+        <li><strong>Remote Endpoint</strong> &mdash; address and port</li>
+      </ul>
+      <p>From the detail panel you can copy the full address or kill the process directly.</p>
+    </section>
+
+    <!-- Port Checker -->
+    <section id="port-checker">
+      <h2><span class="section-num">04</span>Port Checker</h2>
+      <p>Navigate to <strong>Port Checker</strong> in the sidebar. Enter any port number (1&ndash;65535) and press <kbd>Enter</kbd> or click <code>Check</code>.</p>
+      <p>The result will tell you:</p>
+      <ul>
+        <li><strong>Available</strong> &mdash; the port is free and ready to use.</li>
+        <li><strong>In Use</strong> &mdash; shows which processes are using it, with protocol, state, and a kill button for each.</li>
+      </ul>
+      <p>Quick-check buttons for common ports (80, 443, 3000, 3001, 5173, 8080, 8443) are shown below the input for fast access.</p>
+    </section>
+
+    <!-- Managing Processes -->
+    <section id="processes">
+      <h2><span class="section-num">05</span>Managing Processes</h2>
+
+      <h3>Kill a Single Process</h3>
+      <p>You can kill a process from three places:</p>
+      <ol>
+        <li>The kill button (X icon) on any table row</li>
+        <li>The right-click context menu</li>
+        <li>The connection detail panel</li>
+      </ol>
+
+      <h3>Bulk Kill</h3>
+      <p>Select multiple rows using checkboxes (or click the header checkbox to select all), then click the <code>Kill Selected</code> button that appears in the floating action bar.</p>
+
+      <div class="warn">
+        <p><strong>Important:</strong> A confirmation dialog always appears before killing a process. System processes (PID 0 and 4) cannot be terminated. Be careful when killing processes &mdash; this action is irreversible.</p>
+      </div>
+    </section>
+
+    <!-- Auto-Refresh -->
+    <section id="auto-refresh">
+      <h2><span class="section-num">06</span>Auto-Refresh</h2>
+      <p>Click the activity icon (pulse line) in the toolbar to toggle auto-refresh. When enabled, the connections table refreshes every 5 seconds.</p>
+      <p>A green indicator appears in the toolbar showing auto-refresh is active. Click the button again to disable it.</p>
+
+      <div class="tip">
+        <p><strong>Tip:</strong> Use auto-refresh when monitoring for new connections or waiting for a port to become available.</p>
+      </div>
+    </section>
+
+    <!-- CSV Export -->
+    <section id="export">
+      <h2><span class="section-num">07</span>CSV Export</h2>
+      <p>Click the download icon in the toolbar to export the currently filtered data as a CSV file.</p>
+      <ul>
+        <li>Only the <strong>currently visible rows</strong> (after search and filters) are exported.</li>
+        <li>Only <strong>visible columns</strong> (as set in the column chooser) are included.</li>
+        <li>The file is named with a timestamp, e.g. <code>ports-2026-02-10T14-30-00.csv</code></li>
+      </ul>
+    </section>
+
+    <!-- Themes -->
+    <section id="themes">
+      <h2><span class="section-num">08</span>Themes</h2>
+      <p>Harbrr supports two themes:</p>
+      <ul>
+        <li><strong>Dark Mode</strong> (default) &mdash; easy on the eyes with a deep navy palette.</li>
+        <li><strong>Light Mode</strong> &mdash; clean white and blue for well-lit environments.</li>
+      </ul>
+      <p>Toggle the theme using the sun/moon button in the sidebar under Preferences. Your choice is remembered across sessions.</p>
+    </section>
+
+    <!-- Tips & Tricks -->
+    <section id="tips">
+      <h2><span class="section-num">09</span>Tips & Tricks</h2>
+      <ul>
+        <li><strong>Quick search by process</strong> &mdash; type a process name like <code>node.exe</code> or <code>chrome</code> to instantly filter.</li>
+        <li><strong>Find listening ports</strong> &mdash; set the state filter to LISTENING to see only server ports.</li>
+        <li><strong>Identify port conflicts</strong> &mdash; use Port Checker before starting a dev server to confirm the port is free.</li>
+        <li><strong>Right-click for speed</strong> &mdash; the context menu on table rows is the fastest way to copy data or kill a process.</li>
+        <li><strong>Column memory</strong> &mdash; your visible columns are saved in the browser, so they persist across sessions.</li>
+        <li><strong>Refresh manually</strong> &mdash; click the refresh button (circular arrow) to reload connections on demand.</li>
+        <li><strong>Double-click for details</strong> &mdash; double-click any row to instantly open the detail panel.</li>
+        <li><strong>Bulk operations</strong> &mdash; select multiple rows then use Kill Selected to clean up many connections at once.</li>
+      </ul>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    crafted by GG &middot; Harbrr v1.0.0
+  </div>
+
+  <!-- Back to top -->
+  <a href="#top" class="back-top" title="Back to top">&uarr;</a>
+
+</body>
+</html>

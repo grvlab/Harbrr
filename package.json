@@ -1,0 +1,55 @@
+{
+  "name": "harbrr",
+  "version": "1.0.0",
+  "description": "Harbrr - Monitor and manage network connections",
+  "main": "app/main.js",
+  "scripts": {
+    "dev:vite": "vite",
+    "dev:electron": "wait-on http://localhost:5173 && cross-env NODE_ENV=development node scripts/launch.js",
+    "dev": "concurrently -k \"npm run dev:vite\" \"npm run dev:electron\"",
+    "build": "vite build && electron-builder --win",
+    "build:vite": "vite build",
+    "start": "node scripts/launch.js",
+    "preview": "vite build && node scripts/launch.js"
+  },
+  "keywords": ["port-manager", "network", "windows", "electron", "harbrr", "connections"],
+  "author": "GG",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.3",
+    "concurrently": "^9.2.1",
+    "cross-env": "^7.0.3",
+    "electron": "^40.2.1",
+    "electron-builder": "^26.7.0",
+    "vite": "^7.3.1",
+    "wait-on": "^9.0.3"
+  },
+  "build": {
+    "appId": "com.harbrr.app",
+    "productName": "Harbrr",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "app/**/*",
+      "public/**/*"
+    ],
+    "asarUnpack": [
+      "public/guide.html"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "public/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
