@@ -30,14 +30,13 @@ No command line. No headaches. Just smooth sailing. ⛵
 
 | Feature | Description |
 |---|---|
-| 📊 **Live Dashboard** | See all active network connections at a glance — ports, PIDs, protocols, and more |
-| 🔪 **One-Click Kill** | Terminate any process hogging a port instantly |
-| 🔍 **Port Checker** | Quickly look up what's running on a specific port |
-| 🔄 **Auto-Refresh** | Set it and forget it — auto-refreshes connections at your chosen interval |
-| 🌗 **Dark / Light Theme** | Because your eyes matter. Toggle between themes effortlessly |
-| 💻 **System Info** | Quick overview of your machine's network details right in the sidebar |
-| 🎯 **Detail Panel** | Click on any connection to see the full breakdown |
-| ⚡ **Blazingly Fast** | Built with Vite + React for a snappy, native-like experience |
+| **Live Dashboard** | See all active network connections at a glance — ports, PIDs, protocols, and more |
+| **One-Click Kill** | Terminate any process hogging a port instantly |
+| **Port Checker** | Quickly look up what's running on a specific port |
+| **Auto-Refresh** | Set it and forget it — auto-refreshes connections at your chosen interval |
+| **System Info** | Quick overview of your machine's network details right in the sidebar |
+| **Detail Panel** | Click on any connection to see the full breakdown |
+| **Blazingly Fast** | Built with Vite + React for a snappy, native-like experience |
 
 ---
 
@@ -119,6 +118,11 @@ Harbrr/
 5. **Auto-refresh** — enable auto-refresh to keep the dashboard live
 
 ---
+
+## 📦 Download
+
+Grab the latest installer from the [Releases](https://github.com/grvlab/Harbrr/releases/tag/v1.0.0) page — just download, install, and go.
+--
 
 ## 🤝 Contributing
 
